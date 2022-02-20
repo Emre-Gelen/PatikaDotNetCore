@@ -55,5 +55,37 @@ namespace DotNetCoreWebApi.Controllers
         //    var book = BookList.Find(f => f.Id == Id);
         //    return book != null ? book : new Book();
         //}
+
+        [HttpPost]
+        public IActionResult AddBook([FromBody] Book newBook)
+        {
+            var book = BookList.Find(f => f.Title == newBook.Title);
+            if (book is not null) return BadRequest();
+            BookList.Add(newBook);
+            return Ok();
+        }
+
+        [HttpPut("{Id}")]
+        public IActionResult UpdateBook(int Id, [FromBody] Book updatedBook)
+        {
+            var book = BookList.Find(f => f.Id == Id);
+            if (book is null || updatedBook.Id != Id) return BadRequest();
+
+            book.Title = string.IsNullOrEmpty(updatedBook.Title) ? book.Title : updatedBook.Title;
+            book.GenreId = updatedBook.GenreId != default ? updatedBook.GenreId : book.GenreId;
+            book.PageCount = updatedBook.PageCount != default ? updatedBook.PageCount : book.PageCount;
+            book.PublishDate = updatedBook.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
+            return Ok();
+        }
+
+        [HttpDelete("{Id}")]
+        public IActionResult DeleteBook(int Id)
+        {
+            var book = BookList.Find(f => f.Id == Id);
+            if (book is null) return BadRequest();
+
+            BookList.Remove(book);
+            return Ok();
+        }
     }
 }
