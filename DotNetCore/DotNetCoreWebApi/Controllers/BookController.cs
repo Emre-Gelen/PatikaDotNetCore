@@ -13,6 +13,8 @@ using DotNetCoreWebApi.BookOperations.UpdateBook;
 using static DotNetCoreWebApi.BookOperations.UpdateBook.UpdateBookCommand;
 using DotNetCoreWebApi.BookOperations.DeleteBook;
 using AutoMapper;
+using FluentValidation.Results;
+using FluentValidation;
 
 namespace DotNetCoreWebApi.Controllers
 {
@@ -63,7 +65,21 @@ namespace DotNetCoreWebApi.Controllers
             {
                 CreateBookCommand command = new CreateBookCommand(_context,_mapper);
                 command.Model = newBook;
+                CreateBookCommandValidator validator = new CreateBookCommandValidator();
+                validator.ValidateAndThrow(command);
                 command.Handle();
+                //ValidationResult result = validator.Validate(command);
+                //if (result.IsValid)
+                //{
+                //    command.Handle();
+                //}
+                //else
+                //{
+                //    foreach (var item in result.Errors)
+                //    {
+                //        Console.WriteLine("Property: " + item.PropertyName + " - Error Message: " + item.ErrorMessage);
+                //    }
+                //}
             }
             catch (Exception e)
             {
@@ -99,6 +115,7 @@ namespace DotNetCoreWebApi.Controllers
             {
                 DeleteBookCommand command = new DeleteBookCommand(_context);
                 command.BookId = Id;
+                new DeleteBookCommandValidator().ValidateAndThrow(command);
                 command.Handle();
             }
             catch (Exception ex)
