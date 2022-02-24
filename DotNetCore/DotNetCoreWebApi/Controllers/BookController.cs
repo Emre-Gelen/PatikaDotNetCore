@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static DotNetCoreWebApi.BookOperations.CreateBook.CreateBookCommand;
+using DotNetCoreWebApi.BookOperations.GetBookDetail;
 
 namespace DotNetCoreWebApi.Controllers
 {
@@ -28,10 +29,19 @@ namespace DotNetCoreWebApi.Controllers
         }
 
         [HttpGet("{Id}")]
-        public Book GetBookById(int Id)
+        public IActionResult GetBookById(int Id)
         {
-            var book = _context.Books.SingleOrDefault(f => f.Id == Id);
-            return book != null ? book : new Book();
+            try
+            {
+                GetBookDetailQuery getBookDetailQuery = new GetBookDetailQuery(_context);
+                getBookDetailQuery.BookId = Id;
+                return Ok(getBookDetailQuery.Hande());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
         }
 
         //[HttpGet]
