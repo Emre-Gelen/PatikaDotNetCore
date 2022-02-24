@@ -1,4 +1,5 @@
-﻿using DotNetCoreWebApi.DBOperations;
+﻿using AutoMapper;
+using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,21 @@ namespace DotNetCoreWebApi.BookOperations.CreateBook
     {
         public CreateBookModel Model { get; set; }
         private readonly BookStoreDbContext _dbContext;
-        public CreateBookCommand(BookStoreDbContext dbContext)
+        private readonly IMapper _mapper;
+        public CreateBookCommand(BookStoreDbContext dbContext,IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Title == Model.Title);
             if (book is not null) throw new InvalidOperationException("Book is already exist.");
-            book = new Book();
-            book.Title = Model.Title;
-            book.PageCount = Model.PageCount;
-            book.PublishDate = Model.PublishDate;
-            book.GenreId = Model.GenreId;
+            book = _mapper.Map<Book>(Model);  //new Book();
+            //book.Title = Model.Title;
+            //book.PageCount = Model.PageCount;
+            //book.PublishDate = Model.PublishDate;
+            //book.GenreId = Model.GenreId;
 
             _dbContext.Books.Add(book);
             _dbContext.SaveChanges();

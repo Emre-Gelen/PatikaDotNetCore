@@ -1,4 +1,5 @@
-﻿using DotNetCoreWebApi.Common;
+﻿using AutoMapper;
+using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
 using System;
 using System.Collections.Generic;
@@ -10,23 +11,25 @@ namespace DotNetCoreWebApi.BookOperations.GetBookDetail
     public class GetBookDetailQuery
     {
         private readonly BookStoreDbContext _dbContext;
+        private readonly IMapper _mapper;
         public int BookId { get; set; }
-        public GetBookDetailQuery(BookStoreDbContext dbContext)
+        public GetBookDetailQuery(BookStoreDbContext dbContext,IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         public BookDetailViewModel Hande()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Id == BookId);
             if (book is null) throw new InvalidOperationException("Book is not found.");
-            
-            BookDetailViewModel vm = new BookDetailViewModel()
-            {
-                Title = book.Title,
-                PageCount = book.PageCount,
-                PublishDate = book.PublishDate.Date.ToString("MM-dd-yyyy"),
-                GenreName = ((GenreEnum)book.GenreId).ToString()
-            };
+
+            BookDetailViewModel vm = _mapper.Map<BookDetailViewModel>(book); /*new BookDetailViewModel()*/
+            //{
+            //    Title = book.Title,
+            //    PageCount = book.PageCount,
+            //    PublishDate = book.PublishDate.Date.ToString("MM-dd-yyyy"),
+            //    GenreName = ((GenreEnum)book.GenreId).ToString()
+            //};
             return vm;
         }
     }

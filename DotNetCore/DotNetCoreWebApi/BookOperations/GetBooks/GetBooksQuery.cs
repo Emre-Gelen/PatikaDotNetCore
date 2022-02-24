@@ -1,4 +1,5 @@
-﻿using DotNetCoreWebApi.Common;
+﻿using AutoMapper;
+using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.Models;
 using System;
@@ -11,19 +12,21 @@ namespace DotNetCoreWebApi.BookOperations.GetBooks
     public class GetBooksQuery
     {
         private readonly BookStoreDbContext _dbContext;
-        public GetBooksQuery(BookStoreDbContext dbContext)
+        private readonly IMapper _mapper;
+        public GetBooksQuery(BookStoreDbContext dbContext,IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         public List<BooksViewModel> Handle()
         {
             var bookList = _dbContext.Books.OrderBy(o => o.Id).ToList();
-            List<BooksViewModel> vm = bookList.Select(x=> new BooksViewModel { 
+            List<BooksViewModel> vm = _mapper.Map<List<BooksViewModel>>(bookList); /*bookList.Select(x=> new BooksViewModel { 
                 Title = x.Title,
                 PageCount = x.PageCount,
                 PublishDate = x.PublishDate.Date.ToString("MM-dd-yyyy"),
                 GenreName = ((GenreEnum)x.GenreId).ToString()
-            }).ToList();
+            }).ToList();*/
             return vm;
         }
 
