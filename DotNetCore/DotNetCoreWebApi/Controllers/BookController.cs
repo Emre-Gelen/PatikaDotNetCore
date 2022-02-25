@@ -42,6 +42,7 @@ namespace DotNetCoreWebApi.Controllers
             {
                 GetBookDetailQuery getBookDetailQuery = new GetBookDetailQuery(_context,_mapper);
                 getBookDetailQuery.BookId = Id;
+                new GetBookDetailQueryValidator().ValidateAndThrow(getBookDetailQuery);
                 return Ok(getBookDetailQuery.Hande());
             }
             catch (Exception ex)
