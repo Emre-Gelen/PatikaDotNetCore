@@ -99,6 +99,7 @@ namespace DotNetCoreWebApi.Controllers
                 UpdateBookCommand command = new UpdateBookCommand(_context);
                 command.BookId = Id;
                 command.Model = updatedBook;
+                new UpdateBookCommandValidator().ValidateAndThrow(command);
                 command.Handle();
             }
             catch (Exception ex)
