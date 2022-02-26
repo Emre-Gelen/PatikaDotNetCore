@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.Models;
 using System;

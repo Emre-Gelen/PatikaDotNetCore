@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Common
 {
-    public enum GenreEnum
+    public enum GenreEnum : int
     {
         PersonalGrowth = 1,
         ScienceFiction = 2,

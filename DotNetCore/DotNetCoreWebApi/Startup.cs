@@ -1,6 +1,7 @@
 using DotNetCoreWebApi.DBOperations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using DotNetCoreWebApi.Middlewares;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace DotNetCoreWebApi
 {
@@ -55,6 +57,8 @@ namespace DotNetCoreWebApi
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
