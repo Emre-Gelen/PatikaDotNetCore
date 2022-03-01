@@ -4,6 +4,7 @@ using static DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks.GetBoo
 using static DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
 using static DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
 using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
+using static DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor.CreateAuthorCommand;
 using DotNetCoreWebApi.Entities;
 using AutoMapper;
 
@@ -20,6 +21,8 @@ namespace DotNetCoreWebApi.Common
             CreateMap<Genre, GenresViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();
             CreateMap<CreateGenreModel, Genre>();
+
+            CreateMap<CreateAuthorModel, Author>();
         }
     }
 }
