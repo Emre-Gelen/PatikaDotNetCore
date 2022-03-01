@@ -1,24 +1,18 @@
 ﻿using AutoMapper;
 using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
-using DotNetCoreWebApi.Models;
+using DotNetCoreWebApi.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCoreWebApi.BookOperations.CreateBook
+namespace DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook
 {
-    public class CreateBookCommand
+    public class CreateBookCommand : BookStoreDbContextBase
     {
         public CreateBookModel Model { get; set; }
-        private readonly BookStoreDbContext _dbContext;
-        private readonly IMapper _mapper;
-        public CreateBookCommand(BookStoreDbContext dbContext,IMapper mapper)
-        {
-            _dbContext = dbContext;
-            _mapper = mapper;
-        }
+        public CreateBookCommand(BookStoreDbContext dbContext,IMapper mapper) : base(dbContext,mapper){}
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Title == Model.Title);

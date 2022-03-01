@@ -1,4 +1,4 @@
-﻿using DotNetCoreWebApi.Models;
+﻿using DotNetCoreWebApi.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -39,6 +39,20 @@ namespace DotNetCoreWebApi.DBOperations
                         GenreId = 2, //Science Fiction
                         PageCount = 540,
                         PublishDate = new DateTime(2001, 12, 21)
+                    }
+                );
+                context.Genres.AddRange(
+                    new Genre()
+                    {
+                        Name = "Personal Growth"
+                    },
+                    new Genre()
+                    {
+                        Name = "Science Fiction"
+                    },
+                    new Genre()
+                    {
+                        Name = "Noval"
                     }
                 );
                 context.SaveChanges();

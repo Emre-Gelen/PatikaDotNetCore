@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCoreWebApi.BookOperations.UpdateBook
+namespace DotNetCoreWebApi.Application.BookOperations.Commands.UpdateBook
 {
     public class UpdateBookCommandValidator : AbstractValidator<UpdateBookCommand>
     {
@@ -12,7 +12,7 @@ namespace DotNetCoreWebApi.BookOperations.UpdateBook
         {
             RuleFor(command => command.BookId).GreaterThan(0);
             RuleFor(command => command.Model.Title).NotEmpty().MinimumLength(4);
-            RuleFor(command => command.Model.GenreId).IsInEnum().NotEmpty().WithMessage("Genre Id can not be empty.").GreaterThan(0).WithMessage("Genre Id must be greater than 0.");
+            RuleFor(command => command.Model.GenreId).NotEmpty().WithMessage("Genre Id can not be empty.").GreaterThan(0).WithMessage("Genre Id must be greater than 0.");
         }
     }
 }

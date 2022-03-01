@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCoreWebApi.Models
+namespace DotNetCoreWebApi.Entities
 {
     public class Book
     {
@@ -14,5 +14,7 @@ namespace DotNetCoreWebApi.Models
         public int GenreId { get; set; }
         public int PageCount { get; set; }
         public DateTime PublishDate { get; set; }
+
+        public Genre Genre { get; set; }
     }
 }

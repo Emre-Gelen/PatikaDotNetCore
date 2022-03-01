@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCoreWebApi.BookOperations.UpdateBook
+namespace DotNetCoreWebApi.Application.BookOperations.Commands.UpdateBook
 {
     public class UpdateBookCommand
     {

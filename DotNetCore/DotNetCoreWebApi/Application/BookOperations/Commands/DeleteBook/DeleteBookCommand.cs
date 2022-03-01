@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotNetCoreWebApi.BookOperations.DeleteBook
+namespace DotNetCoreWebApi.Application.BookOperations.Commands.DeleteBook
 {
     public class DeleteBookCommand
     {
@@ -17,7 +17,7 @@ namespace DotNetCoreWebApi.BookOperations.DeleteBook
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Id == BookId);
-            if (book is null) throw new InvalidOperationException("Book is not found.");
+            if (book is null) throw new InvalidOperationException("Book was not found.");
 
             _dbContext.Books.Remove(book);
             _dbContext.SaveChanges();

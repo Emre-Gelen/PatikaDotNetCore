@@ -1,12 +1,11 @@
-﻿using AutoMapper;
-using DotNetCoreWebApi.BookOperations.GetBookDetail;
-using DotNetCoreWebApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static DotNetCoreWebApi.BookOperations.CreateBook.CreateBookCommand;
-using static DotNetCoreWebApi.BookOperations.GetBooks.GetBooksQuery;
+﻿using DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail;
+using DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenreDetail;
+using static DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks.GetBooksQuery;
+using static DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
+using static DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
+using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
+using DotNetCoreWebApi.Entities;
+using AutoMapper;
 
 namespace DotNetCoreWebApi.Common
 {
@@ -15,8 +14,12 @@ namespace DotNetCoreWebApi.Common
         public MappingProfile()
         {
             CreateMap<CreateBookModel, Book>();
-            CreateMap<Book, BookDetailViewModel>().ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => ((GenreEnum)mf.GenreId).ToString()));
-            CreateMap<Book, BooksViewModel>().ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => ((GenreEnum)mf.GenreId).ToString()));
+            CreateMap<Book, BookDetailViewModel>().ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name));
+            CreateMap<Book, BooksViewModel>().ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name));
+
+            CreateMap<Genre, GenresViewModel>();
+            CreateMap<Genre, GenreDetailViewModel>();
+            CreateMap<CreateGenreModel, Genre>();
         }
     }
 }
