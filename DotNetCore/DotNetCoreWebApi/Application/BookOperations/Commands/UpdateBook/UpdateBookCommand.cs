@@ -22,12 +22,14 @@ namespace DotNetCoreWebApi.Application.BookOperations.Commands.UpdateBook
 
             book.Title = string.IsNullOrEmpty(Model.Title) ? book.Title : Model.Title;
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
+            book.AuthorId = Model.AuthorId != default ? Model.AuthorId : book.AuthorId;
             _dbContext.SaveChanges();
         }
         public class UpdateBookModel
         {
             public string Title { get; set; }
             public int GenreId { get; set; }
+            public int AuthorId { get; set; }
         }
     }
 }

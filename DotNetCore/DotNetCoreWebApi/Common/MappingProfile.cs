@@ -17,8 +17,12 @@ namespace DotNetCoreWebApi.Common
         public MappingProfile()
         {
             CreateMap<CreateBookModel, Book>();
-            CreateMap<Book, BookDetailViewModel>().ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name));
-            CreateMap<Book, BooksViewModel>().ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name));
+            CreateMap<Book, BookDetailViewModel>()
+                .ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name))
+                .ForMember(fm=> fm.AuthorName, opt => opt.MapFrom(mf => mf.Author.Name + " " + mf.Author.Surname));
+            CreateMap<Book, BooksViewModel>()
+                .ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name))
+                .ForMember(fm => fm.AuthorName, opt => opt.MapFrom(mf => mf.Author.Name + " " + mf.Author.Surname));
 
             CreateMap<Genre, GenresViewModel>();
             CreateMap<Genre, GenreDetailViewModel>();

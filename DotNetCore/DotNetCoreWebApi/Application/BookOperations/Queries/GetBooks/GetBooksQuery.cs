@@ -15,7 +15,9 @@ namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks
         public GetBooksQuery(BookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
         public List<BooksViewModel> Handle()
         {
-            var bookList = _dbContext.Books.Include(x => x.Genre).OrderBy(o => o.Id).ToList();
+            var bookList = _dbContext.Books
+                .Include(x => x.Genre)
+                .Include(x=>x.Author).OrderBy(o => o.Id).ToList();
             List<BooksViewModel> vm = _mapper.Map<List<BooksViewModel>>(bookList); 
             return vm;
         }
@@ -26,6 +28,7 @@ namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks
             public int PageCount { get; set; }
             public string PublishDate { get; set; }
             public string GenreName { get; set; }
+            public string AuthorName { get; set; }
         }
     }
 }

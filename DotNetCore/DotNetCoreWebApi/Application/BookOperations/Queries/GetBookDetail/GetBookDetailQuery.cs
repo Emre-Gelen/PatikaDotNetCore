@@ -15,7 +15,9 @@ namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail
         public GetBookDetailQuery(BookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
         public BookDetailViewModel Hande()
         {
-            var book = _dbContext.Books.Include(x => x.Genre).SingleOrDefault(f => f.Id == BookId);
+            var book = _dbContext.Books
+                .Include(x => x.Genre)
+                .Include(x => x.Author).SingleOrDefault(f => f.Id == BookId);
             if (book is null) throw new InvalidOperationException("Book was not found.");
 
             BookDetailViewModel vm = _mapper.Map<BookDetailViewModel>(book); /*new BookDetailViewModel()*/
@@ -28,5 +30,6 @@ namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail
         public int PageCount { get; set; }
         public string PublishDate { get; set; }
         public string GenreName { get; set; }
+        public string AuthorName { get; set; }
     }
 }
