@@ -22,6 +22,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor
             author = _mapper.Map<Author>(Model);
 
             _dbContext.Authors.Add(author);
+            _dbContext.SaveChanges();
         }
         public class CreateAuthorModel
         {

@@ -24,21 +24,24 @@ namespace DotNetCoreWebApi.DBOperations
                         Title = "Lean Startup",
                         GenreId = 1, //Personal Growth
                         PageCount = 200,
-                        PublishDate = new DateTime(2001, 06, 12)
+                        PublishDate = new DateTime(2001, 06, 12),
+                        AuthorId = 1
                     },
                     new Book()
                     {
                         Title = "Herland",
                         GenreId = 2, //Science Fiction
                         PageCount = 250,
-                        PublishDate = new DateTime(2010, 05, 23)
+                        PublishDate = new DateTime(2010, 05, 23),
+                        AuthorId = 2
                     },
                     new Book()
                     {
                         Title = "Dune",
                         GenreId = 2, //Science Fiction
                         PageCount = 540,
-                        PublishDate = new DateTime(2001, 12, 21)
+                        PublishDate = new DateTime(2001, 12, 21),
+                        AuthorId = 3
                     }
                 );
                 context.Genres.AddRange(
@@ -55,6 +58,25 @@ namespace DotNetCoreWebApi.DBOperations
                         Name = "Noval"
                     }
                 );
+                context.Authors.AddRange(
+                    new Author()
+                    {
+                        Name = "Eric",
+                        Surname = "Ries",
+                        BirthDate = new DateTime(1980, 10, 30),
+                    },
+                    new Author()
+                    {
+                        Name = "Charlotte Perkins",
+                        Surname = "Gilman",
+                        BirthDate = new DateTime(1972, 2, 15),
+                    },
+                    new Author()
+                    {
+                        Name = "Frank",
+                        Surname = "Herbert",
+                        BirthDate = new DateTime(1984, 1, 12),
+                    });
                 context.SaveChanges();
             }
         }

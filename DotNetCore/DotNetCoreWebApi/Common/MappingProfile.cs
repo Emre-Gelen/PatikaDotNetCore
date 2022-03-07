@@ -7,6 +7,8 @@ using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.C
 using static DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor.CreateAuthorCommand;
 using DotNetCoreWebApi.Entities;
 using AutoMapper;
+using static DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthor.GetAuthorQuery;
+using static DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthorDetail.GetAuthorDetailQuery;
 
 namespace DotNetCoreWebApi.Common
 {
@@ -23,6 +25,8 @@ namespace DotNetCoreWebApi.Common
             CreateMap<CreateGenreModel, Genre>();
 
             CreateMap<CreateAuthorModel, Author>();
+            CreateMap<Author, AuthorsViewModel>().ForMember(fm => fm.FullName, opt => opt.MapFrom(mf => mf.Name.Trim() + " " + mf.Surname.Trim()));
+            CreateMap<Author, AuthorDetailViewModel>().ForMember(fm => fm.FullName, opt => opt.MapFrom(mf => mf.Name.Trim() + " " + mf.Surname.Trim()));
         }
     }
 }
