@@ -3,16 +3,18 @@ using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail
 {
     public class GetBookDetailQuery : BookStoreDbContextBase
     {
         public int BookId { get; set; }
-        public GetBookDetailQuery(IBookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
+
+        public GetBookDetailQuery(IBookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        {
+        }
+
         public BookDetailViewModel Hande()
         {
             var book = _dbContext.Books
@@ -24,6 +26,7 @@ namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail
             return vm;
         }
     }
+
     public class BookDetailViewModel
     {
         public string Title { get; set; }

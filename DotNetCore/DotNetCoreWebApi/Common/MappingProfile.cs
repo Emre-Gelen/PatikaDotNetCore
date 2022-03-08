@@ -1,14 +1,14 @@
-﻿using DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail;
+﻿using AutoMapper;
+using DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail;
 using DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenreDetail;
-using static DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks.GetBooksQuery;
-using static DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
-using static DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
-using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
-using static DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor.CreateAuthorCommand;
 using DotNetCoreWebApi.Entities;
-using AutoMapper;
+using static DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor.CreateAuthorCommand;
 using static DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthor.GetAuthorQuery;
 using static DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthorDetail.GetAuthorDetailQuery;
+using static DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
+using static DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks.GetBooksQuery;
+using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
+using static DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
 
 namespace DotNetCoreWebApi.Common
 {
@@ -19,7 +19,7 @@ namespace DotNetCoreWebApi.Common
             CreateMap<CreateBookModel, Book>();
             CreateMap<Book, BookDetailViewModel>()
                 .ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name))
-                .ForMember(fm=> fm.AuthorName, opt => opt.MapFrom(mf => mf.Author.Name + " " + mf.Author.Surname));
+                .ForMember(fm => fm.AuthorName, opt => opt.MapFrom(mf => mf.Author.Name + " " + mf.Author.Surname));
             CreateMap<Book, BooksViewModel>()
                 .ForMember(fm => fm.GenreName, opt => opt.MapFrom(mf => mf.Genre.Name))
                 .ForMember(fm => fm.AuthorName, opt => opt.MapFrom(mf => mf.Author.Name + " " + mf.Author.Surname));

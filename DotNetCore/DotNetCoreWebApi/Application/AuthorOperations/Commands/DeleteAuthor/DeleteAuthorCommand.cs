@@ -1,8 +1,6 @@
 ﻿using DotNetCoreWebApi.DBOperations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.DeleteAuthor
 {
@@ -10,12 +8,13 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.DeleteAuthor
     {
         public int AuthorId { get; set; }
 
-        private IBookStoreDbContext _dbContext; 
+        private IBookStoreDbContext _dbContext;
 
         public DeleteAuthorCommand(IBookStoreDbContext context)
         {
             _dbContext = context;
         }
+
         public void Handle()
         {
             var author = _dbContext.Authors.SingleOrDefault(s => s.Id == AuthorId);

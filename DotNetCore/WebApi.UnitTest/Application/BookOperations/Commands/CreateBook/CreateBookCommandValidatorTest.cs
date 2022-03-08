@@ -2,10 +2,6 @@
 using FluentAssertions;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApi.UnitTests.TestSetup;
 using Xunit;
 using static DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook.CreateBookCommand;
@@ -50,6 +46,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.CreateBook
                 .Invoking(() => validator.ValidateAndThrow(command))
                 .Should().Throw<FluentValidation.ValidationException>();
         }
+
         [Fact]
         public void WhenDateTimeEqualNowIsGiven_Validator_ShouldReturnError()
         {
@@ -71,6 +68,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.CreateBook
                .Invoking(() => validator.ValidateAndThrow(command))
                .Should().Throw<FluentValidation.ValidationException>();
         }
+
         [Fact]
         public void WhenValidInputsAreGiven_Validator_ShouldNotReturnError()
         {
@@ -82,7 +80,8 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.CreateBook
                 GenreId = 1,
                 PageCount = 150,
                 AuthorId = 1,
-                PublishDate = DateTime.Now.Date.AddYears(-1)};
+                PublishDate = DateTime.Now.Date.AddYears(-1)
+            };
 
             CreateBookCommandValidator validator = new CreateBookCommandValidator();
 

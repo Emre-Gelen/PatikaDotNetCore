@@ -1,8 +1,6 @@
 ﻿using DotNetCoreWebApi.DBOperations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.BookOperations.Commands.UpdateBook
 {
@@ -11,10 +9,12 @@ namespace DotNetCoreWebApi.Application.BookOperations.Commands.UpdateBook
         private readonly IBookStoreDbContext _dbContext;
         public int BookId { get; set; }
         public UpdateBookModel Model { get; set; }
+
         public UpdateBookCommand(IBookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
+
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Id == BookId);
@@ -25,6 +25,7 @@ namespace DotNetCoreWebApi.Application.BookOperations.Commands.UpdateBook
             book.AuthorId = Model.AuthorId != default ? Model.AuthorId : book.AuthorId;
             _dbContext.SaveChanges();
         }
+
         public class UpdateBookModel
         {
             public string Title { get; set; }

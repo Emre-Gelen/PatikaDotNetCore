@@ -3,16 +3,17 @@ using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre
 {
     public class CreateGenreCommand : BookStoreDbContextBase
     {
         public CreateGenreModel Model { get; set; }
-        public CreateGenreCommand(IBookStoreDbContext context, IMapper mapper) : base(context, mapper) { }
+
+        public CreateGenreCommand(IBookStoreDbContext context, IMapper mapper) : base(context, mapper)
+        {
+        }
 
         public void Handle()
         {

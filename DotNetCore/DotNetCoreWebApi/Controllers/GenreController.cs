@@ -64,6 +64,7 @@ namespace DotNetCoreWebApi.Controllers
         {
             return Ok(new GetGenresQuery(_context, _mapper).Handle());
         }
+
         [HttpPut("{Id}")]
         public IActionResult UpdateGenre(int Id, [FromBody] UpdateGenreModel updatedGenre)
         {

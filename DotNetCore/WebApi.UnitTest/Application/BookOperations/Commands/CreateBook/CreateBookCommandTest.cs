@@ -21,6 +21,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.CreateBook
             _dbContext = testFixture.Context;
             _mapper = testFixture.Mapper;
         }
+
         [Fact]
         public void WhenAlreadyExistBookTitleIsGiven_InvalidOperationException_ShouldReturn()
         {
@@ -36,6 +37,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.CreateBook
                 .Invoking(() => command.Handle())
                 .Should().Throw<InvalidOperationException>().And.Message.Should().Be("Book is already exist.");
         }
+
         [Fact]
         public void WhenValidInputsAreGiven_InvalidOperationException_ShouldReturn()
         {

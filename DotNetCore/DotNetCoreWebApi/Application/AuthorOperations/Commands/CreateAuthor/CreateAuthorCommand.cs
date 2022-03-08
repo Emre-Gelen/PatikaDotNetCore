@@ -3,16 +3,17 @@ using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor
 {
     public class CreateAuthorCommand : BookStoreDbContextBase
     {
         public CreateAuthorModel Model { get; set; }
-        public CreateAuthorCommand(IBookStoreDbContext context,IMapper mapper):base(context,mapper){}
+
+        public CreateAuthorCommand(IBookStoreDbContext context, IMapper mapper) : base(context, mapper)
+        {
+        }
 
         public void Handle()
         {
@@ -24,6 +25,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor
             _dbContext.Authors.Add(author);
             _dbContext.SaveChanges();
         }
+
         public class CreateAuthorModel
         {
             public string Name { get; set; }

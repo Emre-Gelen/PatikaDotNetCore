@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -15,7 +13,8 @@ namespace DotNetCoreWebApi.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILoggerService _loggerService;
-        public CustomExceptionMiddleware(RequestDelegate next,ILoggerService loggerService)
+
+        public CustomExceptionMiddleware(RequestDelegate next, ILoggerService loggerService)
         {
             _next = next;
             _loggerService = loggerService;
@@ -37,9 +36,8 @@ namespace DotNetCoreWebApi.Middlewares
             catch (Exception ex)
             {
                 watch.Stop();
-                await HandleExceptionAsync(context,ex,watch);
+                await HandleExceptionAsync(context, ex, watch);
             }
-          
         }
 
         private Task HandleExceptionAsync(HttpContext context, Exception ex, Stopwatch watch)
@@ -54,6 +52,7 @@ namespace DotNetCoreWebApi.Middlewares
             return context.Response.WriteAsync(result);
         }
     }
+
     public static class CustomExceptionMiddlewareExtension
     {
         public static IApplicationBuilder UseCustomExceptionMiddleware(this IApplicationBuilder builder)

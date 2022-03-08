@@ -1,8 +1,6 @@
 ﻿using DotNetCoreWebApi.DBOperations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.UpdateAuthor
 {
@@ -11,13 +9,15 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.UpdateAuthor
         private readonly IBookStoreDbContext _dbContext;
         public int AuthorId { get; set; }
         public UpdateAuthorModel Model { get; set; }
+
         public UpdateAuthorCommand(IBookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
+
         public void Handle()
         {
-            var author = _dbContext.Authors.SingleOrDefault(s=>s.Id == AuthorId);
+            var author = _dbContext.Authors.SingleOrDefault(s => s.Id == AuthorId);
             if (author is null) throw new InvalidOperationException("Author was not found.");
 
             author.Name = string.IsNullOrEmpty(Model.Name) ? author.Name : Model.Name;
@@ -26,11 +26,12 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.UpdateAuthor
 
             _dbContext.SaveChanges();
         }
+
         public class UpdateAuthorModel
         {
             public string Name { get; set; }
             public string Surname { get; set; }
-            public DateTime BirthDate{ get; set; }
+            public DateTime BirthDate { get; set; }
         }
     }
 }

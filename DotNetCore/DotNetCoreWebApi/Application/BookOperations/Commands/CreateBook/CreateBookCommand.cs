@@ -3,16 +3,18 @@ using DotNetCoreWebApi.Common;
 using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook
 {
     public class CreateBookCommand : BookStoreDbContextBase
     {
         public CreateBookModel Model { get; set; }
-        public CreateBookCommand(IBookStoreDbContext dbContext,IMapper mapper) : base(dbContext,mapper){}
+
+        public CreateBookCommand(IBookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        {
+        }
+
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Title == Model.Title);
@@ -27,8 +29,9 @@ namespace DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook
             _dbContext.SaveChanges();
         }
 
-        public class CreateBookModel {
-            public string Title{ get; set; }
+        public class CreateBookModel
+        {
+            public string Title { get; set; }
             public int GenreId { get; set; }
             public int AuthorId { get; set; }
             public int PageCount { get; set; }

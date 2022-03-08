@@ -1,8 +1,6 @@
 ﻿using DotNetCoreWebApi.DBOperations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.BookOperations.Commands.DeleteBook
 {
@@ -10,10 +8,12 @@ namespace DotNetCoreWebApi.Application.BookOperations.Commands.DeleteBook
     {
         private readonly IBookStoreDbContext _dbContext;
         public int BookId { get; set; }
+
         public DeleteBookCommand(IBookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
+
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Id == BookId);

@@ -20,6 +20,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.UpdateBook
             _dbContext = testFixture.Context;
             _mapper = testFixture.Mapper;
         }
+
         [Fact]
         public void WhenNotExistIdIsGiven_InvalidOperationException_ShouldReturnError()
         {
@@ -33,6 +34,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.UpdateBook
                 .Invoking(() => command.Handle())
                 .Should().Throw<InvalidOperationException>().And.Message.Should().Be("Book was not found.");
         }
+
         [Fact]
         public void WhenValidInputsAreGiven_InvalidOperationException_ShouldReturn()
         {

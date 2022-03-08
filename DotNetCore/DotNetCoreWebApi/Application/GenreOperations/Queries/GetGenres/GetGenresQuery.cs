@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using DotNetCoreWebApi.DBOperations;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenres
 {
@@ -11,6 +9,7 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenres
     {
         private readonly IBookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
+
         public GetGenresQuery(IBookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;

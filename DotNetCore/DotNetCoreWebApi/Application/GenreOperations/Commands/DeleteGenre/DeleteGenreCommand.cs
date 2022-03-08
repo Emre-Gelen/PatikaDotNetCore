@@ -1,8 +1,6 @@
 ﻿using DotNetCoreWebApi.DBOperations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.GenreOperations.Commands.DeleteGenre
 {
@@ -11,10 +9,12 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Commands.DeleteGenre
         public int GenreId { get; set; }
 
         private readonly IBookStoreDbContext _dbContext;
+
         public DeleteGenreCommand(IBookStoreDbContext context)
         {
             _dbContext = context;
         }
+
         public void Handle()
         {
             var genre = _dbContext.Genres.SingleOrDefault(s => s.Id == GenreId);
@@ -22,6 +22,6 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Commands.DeleteGenre
 
             _dbContext.Genres.Remove(genre);
             _dbContext.SaveChanges();
-        } 
+        }
     }
 }

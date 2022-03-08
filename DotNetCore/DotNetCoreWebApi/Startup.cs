@@ -1,22 +1,14 @@
 using DotNetCoreWebApi.DBOperations;
+using DotNetCoreWebApi.Middlewares;
+using DotNetCoreWebApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using DotNetCoreWebApi.Middlewares;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
-using System.Threading;
-using DotNetCoreWebApi.Services;
 
 namespace DotNetCoreWebApi
 {
@@ -32,7 +24,6 @@ namespace DotNetCoreWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -42,7 +33,7 @@ namespace DotNetCoreWebApi
             services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase("BookStoreDB"));
             services.AddScoped<IBookStoreDbContext>(provider => provider.GetService<BookStoreDbContext>());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddSingleton<ILoggerService,DBLogger>();
+            services.AddSingleton<ILoggerService, DBLogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +51,7 @@ namespace DotNetCoreWebApi
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
             app.UseCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>

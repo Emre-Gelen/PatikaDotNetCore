@@ -1,8 +1,6 @@
 ﻿using DotNetCoreWebApi.DBOperations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNetCoreWebApi.Application.GenreOperations.Commands.UpdateGenre
 {
@@ -11,10 +9,12 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Commands.UpdateGenre
         public int GenreId { get; set; }
         public UpdateGenreModel Model { get; set; }
         private readonly IBookStoreDbContext _dbContext;
+
         public UpdateGenreCommand(IBookStoreDbContext context)
         {
             _dbContext = context;
         }
+
         public void Handle()
         {
             var genre = _dbContext.Genres.SingleOrDefault(s => s.Id == GenreId);
@@ -26,6 +26,7 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Commands.UpdateGenre
             _dbContext.SaveChanges();
         }
     }
+
     public class UpdateGenreModel
     {
         public string Name { get; set; }

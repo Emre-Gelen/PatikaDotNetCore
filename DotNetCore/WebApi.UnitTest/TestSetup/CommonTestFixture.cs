@@ -10,6 +10,7 @@ namespace WebApi.UnitTests.TestSetup
     {
         public BookStoreDbContext Context { get; set; }
         public IMapper Mapper { get; set; }
+
         public CommonTestFixture()
         {
             var options = new DbContextOptionsBuilder<BookStoreDbContext>().UseInMemoryDatabase("BookStoreTestDB").Options;
@@ -22,7 +23,7 @@ namespace WebApi.UnitTests.TestSetup
 
             Context.SaveChanges();
 
-            Mapper = new MapperConfiguration(config => config.AddProfile<MappingProfile>()).CreateMapper(); 
+            Mapper = new MapperConfiguration(config => config.AddProfile<MappingProfile>()).CreateMapper();
         }
     }
 }
