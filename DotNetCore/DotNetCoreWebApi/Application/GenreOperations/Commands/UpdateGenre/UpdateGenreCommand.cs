@@ -10,8 +10,8 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Commands.UpdateGenre
     {
         public int GenreId { get; set; }
         public UpdateGenreModel Model { get; set; }
-        private readonly BookStoreDbContext _dbContext;
-        public UpdateGenreCommand(BookStoreDbContext context)
+        private readonly IBookStoreDbContext _dbContext;
+        public UpdateGenreCommand(IBookStoreDbContext context)
         {
             _dbContext = context;
         }

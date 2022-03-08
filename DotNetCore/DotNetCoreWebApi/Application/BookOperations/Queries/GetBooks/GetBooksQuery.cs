@@ -12,7 +12,7 @@ namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks
 {
     public class GetBooksQuery : BookStoreDbContextBase
     {
-        public GetBooksQuery(BookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
+        public GetBooksQuery(IBookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
         public List<BooksViewModel> Handle()
         {
             var bookList = _dbContext.Books

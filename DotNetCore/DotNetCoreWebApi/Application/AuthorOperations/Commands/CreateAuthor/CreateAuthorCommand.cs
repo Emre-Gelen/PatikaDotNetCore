@@ -12,7 +12,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor
     public class CreateAuthorCommand : BookStoreDbContextBase
     {
         public CreateAuthorModel Model { get; set; }
-        public CreateAuthorCommand(BookStoreDbContext context,IMapper mapper):base(context,mapper){}
+        public CreateAuthorCommand(IBookStoreDbContext context,IMapper mapper):base(context,mapper){}
 
         public void Handle()
         {

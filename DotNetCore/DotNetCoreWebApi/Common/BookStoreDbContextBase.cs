@@ -9,10 +9,10 @@ namespace DotNetCoreWebApi.Common
 {
     public class BookStoreDbContextBase
     {
-        protected readonly BookStoreDbContext _dbContext;
+        protected readonly IBookStoreDbContext _dbContext;
         protected readonly IMapper _mapper;
 
-        protected BookStoreDbContextBase(BookStoreDbContext context,IMapper mapper)
+        protected BookStoreDbContextBase(IBookStoreDbContext context,IMapper mapper)
         {
             _dbContext = context;
             _mapper = mapper;

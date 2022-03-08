@@ -11,7 +11,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthorDetail
     public class GetAuthorDetailQuery : BookStoreDbContextBase
     {
         public int AuthorId { get; set; }
-        public GetAuthorDetailQuery(BookStoreDbContext context, IMapper mapper) : base(context, mapper) { }
+        public GetAuthorDetailQuery(IBookStoreDbContext context, IMapper mapper) : base(context, mapper) { }
 
         public AuthorDetailViewModel Handle()
         {

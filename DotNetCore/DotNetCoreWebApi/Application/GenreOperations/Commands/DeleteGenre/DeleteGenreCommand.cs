@@ -10,8 +10,8 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Commands.DeleteGenre
     {
         public int GenreId { get; set; }
 
-        private readonly BookStoreDbContext _dbContext;
-        public DeleteGenreCommand(BookStoreDbContext context)
+        private readonly IBookStoreDbContext _dbContext;
+        public DeleteGenreCommand(IBookStoreDbContext context)
         {
             _dbContext = context;
         }

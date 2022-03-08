@@ -76,7 +76,8 @@ namespace DotNetCoreWebApi.DBOperations
                         Name = "Frank",
                         Surname = "Herbert",
                         BirthDate = new DateTime(1984, 1, 12),
-                    });
+                    }
+                );
                 context.SaveChanges();
             }
         }

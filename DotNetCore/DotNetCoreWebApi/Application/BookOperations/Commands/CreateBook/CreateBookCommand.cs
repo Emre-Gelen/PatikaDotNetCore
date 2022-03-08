@@ -12,7 +12,7 @@ namespace DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook
     public class CreateBookCommand : BookStoreDbContextBase
     {
         public CreateBookModel Model { get; set; }
-        public CreateBookCommand(BookStoreDbContext dbContext,IMapper mapper) : base(dbContext,mapper){}
+        public CreateBookCommand(IBookStoreDbContext dbContext,IMapper mapper) : base(dbContext,mapper){}
         public void Handle()
         {
             var book = _dbContext.Books.SingleOrDefault(f => f.Title == Model.Title);

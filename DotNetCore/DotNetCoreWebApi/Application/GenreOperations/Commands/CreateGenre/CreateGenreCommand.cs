@@ -12,7 +12,7 @@ namespace DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre
     public class CreateGenreCommand : BookStoreDbContextBase
     {
         public CreateGenreModel Model { get; set; }
-        public CreateGenreCommand(BookStoreDbContext context, IMapper mapper) : base(context, mapper) { }
+        public CreateGenreCommand(IBookStoreDbContext context, IMapper mapper) : base(context, mapper) { }
 
         public void Handle()
         {

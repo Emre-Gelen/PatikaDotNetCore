@@ -10,7 +10,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthor
 {
     public class GetAuthorQuery : BookStoreDbContextBase
     {
-        public GetAuthorQuery(BookStoreDbContext context, IMapper mapper):base(context,mapper){}
+        public GetAuthorQuery(IBookStoreDbContext context, IMapper mapper):base(context,mapper){}
 
         public List<AuthorsViewModel> Handle()
         {
