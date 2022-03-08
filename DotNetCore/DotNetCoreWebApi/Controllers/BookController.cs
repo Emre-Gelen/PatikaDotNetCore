@@ -33,18 +33,6 @@ namespace DotNetCoreWebApi.Controllers
             CreateBookCommandValidator validator = new CreateBookCommandValidator();
             validator.ValidateAndThrow(command);
             command.Handle();
-            //ValidationResult result = validator.Validate(command);
-            //if (result.IsValid)
-            //{
-            //    command.Handle();
-            //}
-            //else
-            //{
-            //    foreach (var item in result.Errors)
-            //    {
-            //        Console.WriteLine("Property: " + item.PropertyName + " - Error Message: " + item.ErrorMessage);
-            //    }
-            //}
             return Ok();
         }
 
@@ -74,12 +62,6 @@ namespace DotNetCoreWebApi.Controllers
             return Ok(new GetBooksQuery(_context, _mapper).Handle());
         }
 
-        //[HttpGet]
-        //public Book GetBookByIdFromQuery([FromQuery] int Id)
-        //{
-        //    var book = BookList.Find(f => f.Id == Id);
-        //    return book != null ? book : new Book();
-        //}
         [HttpPut("{Id}")]
         public IActionResult UpdateBook(int Id, [FromBody] UpdateBookModel updatedBook)
         {

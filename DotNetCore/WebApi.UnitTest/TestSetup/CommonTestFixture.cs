@@ -6,11 +6,11 @@ using WebApi.UnitTests.TestSetup.InitialData;
 
 namespace WebApi.UnitTests.TestSetup
 {
-    public class CommonTextFixture
+    public class CommonTestFixture
     {
         public BookStoreDbContext Context { get; set; }
         public IMapper Mapper { get; set; }
-        public CommonTextFixture()
+        public CommonTestFixture()
         {
             var options = new DbContextOptionsBuilder<BookStoreDbContext>().UseInMemoryDatabase("BookStoreTestDB").Options;
             Context = new BookStoreDbContext(options);
