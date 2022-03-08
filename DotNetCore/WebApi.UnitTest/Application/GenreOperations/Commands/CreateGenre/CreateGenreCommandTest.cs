@@ -4,10 +4,7 @@ using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.Entities;
 using FluentAssertions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApi.UnitTests.TestSetup;
 using Xunit;
 using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
@@ -18,6 +15,7 @@ namespace WebApi.UnitTests.Application.GenreOperations.Commands.CreateGenre
     {
         private readonly BookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
+
         public CreateGenreCommandTest(CommonTestFixture testFixture)
         {
             _dbContext = testFixture.Context;

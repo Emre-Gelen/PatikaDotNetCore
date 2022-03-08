@@ -11,7 +11,9 @@ namespace DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail
     {
         public int BookId { get; set; }
 
-        public GetBookDetailQuery(IBookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper){}
+        public GetBookDetailQuery(IBookStoreDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        {
+        }
 
         public BookDetailViewModel Handle()
         {

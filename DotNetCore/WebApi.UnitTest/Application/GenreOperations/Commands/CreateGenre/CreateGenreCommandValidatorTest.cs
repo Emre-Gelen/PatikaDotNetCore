@@ -1,11 +1,6 @@
 ﻿using DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre;
 using FluentAssertions;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApi.UnitTests.TestSetup;
 using Xunit;
 using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
@@ -37,7 +32,8 @@ namespace WebApi.UnitTests.Application.GenreOperations.Commands.CreateGenre
         }
 
         [Fact]
-        public void WhenValidInputsAreGiven_Validator_ShouldNotReturnError() {
+        public void WhenValidInputsAreGiven_Validator_ShouldNotReturnError()
+        {
             //Arrange : Preparing
             CreateGenreCommand command = new CreateGenreCommand(null, null);
             command.Model = new CreateGenreModel()
@@ -46,7 +42,7 @@ namespace WebApi.UnitTests.Application.GenreOperations.Commands.CreateGenre
             };
 
             CreateGenreCommandValidator validator = new CreateGenreCommandValidator();
-            
+
             FluentActions
                 .Invoking(() => validator.ValidateAndThrow(command))
                 .Should().NotThrow();
