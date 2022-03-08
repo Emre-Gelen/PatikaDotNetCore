@@ -28,9 +28,6 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.DeleteBook
         [InlineData(2)]
         [InlineData(3)]
         [InlineData(4)]
-        [InlineData(5)]
-        [InlineData(6)]
-        [InlineData(7)]
         public void WhenValidInputAreGiven_Validator_ShouldNotReturnError(int bookId)
         {
             //Arrange : Preparing
