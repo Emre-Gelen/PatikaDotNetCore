@@ -27,8 +27,4 @@
     <ProjectReference Include="..\DotNetCoreWebApi\DotNetCoreWebApi.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\GenreOperations\Queries\GetGenreDetail\" />
-  </ItemGroup>
-
 </Project>

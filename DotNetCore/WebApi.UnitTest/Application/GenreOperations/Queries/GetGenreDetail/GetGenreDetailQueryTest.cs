@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using DotNetCoreWebApi.Application.BookOperations.Queries.GetBookDetail;
+using DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenreDetail;
 using DotNetCoreWebApi.DBOperations;
 using FluentAssertions;
 using System;
@@ -7,14 +7,14 @@ using System.Linq;
 using WebApi.UnitTests.TestSetup;
 using Xunit;
 
-namespace WebApi.UnitTests.Application.BookOperations.Queries.GetBookDetail
+namespace WebApi.UnitTests.Application.GenreOperations.Queries.GetGenreDetail
 {
-    public class GetBookDetailQueryTest : IClassFixture<CommonTestFixture>
+    public class GetGenreDetailQueryTest : IClassFixture<CommonTestFixture>
     {
         private readonly BookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public GetBookDetailQueryTest(CommonTestFixture testFixture)
+        public GetGenreDetailQueryTest(CommonTestFixture testFixture)
         {
             _dbContext = testFixture.Context;
             _mapper = testFixture.Mapper;
@@ -24,23 +24,23 @@ namespace WebApi.UnitTests.Application.BookOperations.Queries.GetBookDetail
         public void WhenInvalidInputIsGiven_InvalidOperationException_ShouldReturnError()
         {
             //Arrange : Preparing
-            GetBookDetailQuery query = new GetBookDetailQuery(_dbContext, _mapper);
+            GetGenreDetailQuery query = new GetGenreDetailQuery(_dbContext, _mapper);
             int Id = 1000000;
-            query.BookId = Id;
+            query.GenreId = Id;
 
             //Act : Running && Assert : Validation
             FluentActions
                 .Invoking(() => query.Handle())
-                .Should().Throw<InvalidOperationException>().And.Message.Should().Be("Book was not found.");
+                .Should().Throw<InvalidOperationException>().And.Message.Should().Be("Genre was not found.");
         }
 
         [Fact]
         public void WhenValidInputIsGiven_InvalidOperationException_ShouldNotReturnError()
         {
             //Arrange : Preparing
-            GetBookDetailQuery query = new GetBookDetailQuery(_dbContext, _mapper);
-            int Id = _dbContext.Books.Max(m => m.Id);
-            query.BookId = Id;
+            GetGenreDetailQuery query = new GetGenreDetailQuery(_dbContext, _mapper);
+            int Id = _dbContext.Genres.Max(m => m.Id);
+            query.GenreId = Id;
 
             //Act : Running && Assert : Validation
             FluentActions

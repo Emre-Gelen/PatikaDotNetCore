@@ -39,7 +39,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.CreateBook
         }
 
         [Fact]
-        public void WhenValidInputsAreGiven_InvalidOperationException_ShouldReturn()
+        public void WhenValidInputsAreGiven_Book_ShouldBeCreated()
         {
             //Arrange : Preparing
             CreateBookCommand command = new CreateBookCommand(_dbContext, _mapper);

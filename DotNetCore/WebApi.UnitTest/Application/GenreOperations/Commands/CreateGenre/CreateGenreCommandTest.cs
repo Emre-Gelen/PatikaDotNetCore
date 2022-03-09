@@ -40,7 +40,7 @@ namespace WebApi.UnitTests.Application.GenreOperations.Commands.CreateGenre
         }
 
         [Fact]
-        public void WhenValidInputsAreGiven_InvalidOperationException_ShouldNotReturn()
+        public void WhenValidInputsAreGiven_Genre_ShouldBeCreated()
         {
             //Arrange : Preparing
             CreateGenreCommand command = new CreateGenreCommand(_dbContext, _mapper);

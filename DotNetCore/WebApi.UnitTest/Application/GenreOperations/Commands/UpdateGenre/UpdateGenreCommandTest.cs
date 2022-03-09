@@ -36,7 +36,7 @@ namespace WebApi.UnitTests.Application.GenreOperations.Commands.UpdateGenre
         }
 
         [Fact]
-        public void WhenValidInputsAreGiven_InvalidOperationException_ShouldNotReturn()
+        public void WhenValidInputsAreGiven_Genre_ShouldBeUpdated()
         {
             //Arrange
             UpdateGenreCommand command = new UpdateGenreCommand(_dbContext);
