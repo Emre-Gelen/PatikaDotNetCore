@@ -36,7 +36,7 @@ namespace WebApi.UnitTests.Application.BookOperations.Commands.UpdateBook
         }
 
         [Fact]
-        public void WhenValidInputsAreGiven_InvalidOperationException_ShouldReturn()
+        public void WhenValidInputsAreGiven_InvalidOperationException_ShouldNotReturn()
         {
             //Arrange : Preparing
             UpdateBookCommand command = new UpdateBookCommand(_dbContext);
