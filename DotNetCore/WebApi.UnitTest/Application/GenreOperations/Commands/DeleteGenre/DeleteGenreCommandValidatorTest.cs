@@ -1,11 +1,6 @@
 ﻿using DotNetCoreWebApi.Application.GenreOperations.Commands.DeleteGenre;
 using FluentAssertions;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApi.UnitTests.TestSetup;
 using Xunit;
 

@@ -2,10 +2,7 @@
 using DotNetCoreWebApi.DBOperations;
 using FluentAssertions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebApi.UnitTests.TestSetup;
 using Xunit;
 
@@ -14,6 +11,7 @@ namespace WebApi.UnitTests.Application.GenreOperations.Commands.DeleteGenre
     public class DeleteGenreCommandTest : IClassFixture<CommonTestFixture>
     {
         private readonly BookStoreDbContext _dbContext;
+
         public DeleteGenreCommandTest(CommonTestFixture testFixture)
         {
             _dbContext = testFixture.Context;
@@ -33,6 +31,7 @@ namespace WebApi.UnitTests.Application.GenreOperations.Commands.DeleteGenre
                 .Invoking(() => command.Handle())
                 .Should().Throw<InvalidOperationException>();
         }
+
         [Fact]
         public void WhenValidIdIsGiven_InvalidOperationException_ShouldNotReturn()
         {
