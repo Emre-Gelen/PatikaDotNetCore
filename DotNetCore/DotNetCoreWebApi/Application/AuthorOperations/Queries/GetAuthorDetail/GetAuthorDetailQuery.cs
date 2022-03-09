@@ -17,7 +17,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthorDetail
         public AuthorDetailViewModel Handle()
         {
             var author = _dbContext.Authors.SingleOrDefault(s => s.Id == AuthorId);
-            if (author is null) throw new InvalidCastException("Author was not found.");
+            if (author is null) throw new InvalidOperationException("Author was not found.");
             AuthorDetailViewModel vm = _mapper.Map<AuthorDetailViewModel>(author);
             return vm;
         }

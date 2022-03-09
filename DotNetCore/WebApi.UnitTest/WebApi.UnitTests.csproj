@@ -27,10 +27,4 @@
     <ProjectReference Include="..\DotNetCoreWebApi\DotNetCoreWebApi.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Application\AuthorOperations\Commands\DeleteAuthor\" />
-    <Folder Include="Application\AuthorOperations\Commands\UpdateAuthor\" />
-    <Folder Include="Application\AuthorOperations\Queries\GetAuthorDetail\" />
-  </ItemGroup>
-
 </Project>

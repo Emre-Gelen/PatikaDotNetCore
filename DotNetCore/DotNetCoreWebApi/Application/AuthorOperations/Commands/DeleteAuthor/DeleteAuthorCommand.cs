@@ -20,7 +20,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.DeleteAuthor
             var author = _dbContext.Authors.SingleOrDefault(s => s.Id == AuthorId);
             var authorBooks = _dbContext.Books.Where(w => w.AuthorId == AuthorId);
             if (author is null) throw new InvalidOperationException("Author was not found.");
-            if (authorBooks is not null) throw new InvalidOperationException("Author has book(s).");
+            if (authorBooks.Count() > 0) throw new InvalidOperationException("Author has book(s).");
             _dbContext.Authors.Remove(author);
             _dbContext.SaveChanges();
         }

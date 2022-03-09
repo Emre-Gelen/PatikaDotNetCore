@@ -45,7 +45,7 @@ namespace WebApi.UnitTests.Application.AuthorOperations.Commands.CreateAuthor
         {
             //Arrange : Preparing
             CreateAuthorCommand command = new CreateAuthorCommand(_dbContext, _mapper);
-            CreateAuthorModel model = new CreateAuthorModel() { Name = "Emre", Surname = "Gelen", BirthDate = DateTime.Now.Date.AddYears(-30) };
+            CreateAuthorModel model = new CreateAuthorModel() { Name = "DenemeName", Surname = "DenemeSurname", BirthDate = DateTime.Now.Date.AddYears(-30) };
             command.Model = model;
             //Act : Running
             FluentActions
