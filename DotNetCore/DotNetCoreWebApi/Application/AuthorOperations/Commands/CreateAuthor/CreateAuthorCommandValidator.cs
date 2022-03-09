@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System;
 
 namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor
 {
@@ -8,6 +9,7 @@ namespace DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor
         {
             RuleFor(command => command.Model.Name).NotEmpty().MinimumLength(2);
             RuleFor(command => command.Model.Surname).NotEmpty().MinimumLength(2);
+            RuleFor(command => command.Model.BirthDate).LessThan(DateTime.Now.Date.AddYears(-15));
         }
     }
 }
