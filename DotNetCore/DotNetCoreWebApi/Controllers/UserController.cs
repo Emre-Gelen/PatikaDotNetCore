@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DotNetCoreWebApi.Application.UserOperations.Commands.CreateToken;
 using DotNetCoreWebApi.Application.UserOperations.Commands.CreateUser;
+using DotNetCoreWebApi.Application.UserOperations.Commands.RefreshToken;
 using DotNetCoreWebApi.DBOperations;
 using DotNetCoreWebApi.TokenOperations.Model;
 using FluentValidation;
@@ -44,6 +45,13 @@ namespace DotNetCoreWebApi.Controllers
             command.Model = login;
             var token = command.Handle();
             return token;
+        }
+        [HttpGet("refreshToken")]
+        public ActionResult<Token> RefreshToken([FromQuery] string refreshToken)
+        {
+            RefreshTokenCommand command = new RefreshTokenCommand(_context,_configuration);
+            command.RefreshToken = refreshToken;
+            return command.Handle();
         }
     }
 }
