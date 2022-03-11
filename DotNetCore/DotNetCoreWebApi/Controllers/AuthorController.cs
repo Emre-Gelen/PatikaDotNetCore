@@ -6,13 +6,15 @@ using DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthor;
 using DotNetCoreWebApi.Application.AuthorOperations.Queries.GetAuthorDetail;
 using DotNetCoreWebApi.DBOperations;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static DotNetCoreWebApi.Application.AuthorOperations.Commands.CreateAuthor.CreateAuthorCommand;
 using static DotNetCoreWebApi.Application.AuthorOperations.Commands.UpdateAuthor.UpdateAuthorCommand;
 
 namespace DotNetCoreWebApi.Controllers
 {
-    [Route("api/[controller]s")]
+    [Authorize]
+    [Route("[controller]s")]
     [ApiController]
     public class AuthorController : ControllerBase
     {

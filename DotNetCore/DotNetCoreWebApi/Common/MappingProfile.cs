@@ -9,6 +9,7 @@ using static DotNetCoreWebApi.Application.BookOperations.Commands.CreateBook.Cre
 using static DotNetCoreWebApi.Application.BookOperations.Queries.GetBooks.GetBooksQuery;
 using static DotNetCoreWebApi.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
 using static DotNetCoreWebApi.Application.GenreOperations.Queries.GetGenres.GetGenresQuery;
+using static DotNetCoreWebApi.Application.UserOperations.Commands.CreateUser.CreateUserCommand;
 
 namespace DotNetCoreWebApi.Common
 {
@@ -31,6 +32,8 @@ namespace DotNetCoreWebApi.Common
             CreateMap<CreateAuthorModel, Author>();
             CreateMap<Author, AuthorsViewModel>().ForMember(fm => fm.FullName, opt => opt.MapFrom(mf => mf.Name.Trim() + " " + mf.Surname.Trim()));
             CreateMap<Author, AuthorDetailViewModel>().ForMember(fm => fm.FullName, opt => opt.MapFrom(mf => mf.Name.Trim() + " " + mf.Surname.Trim()));
+
+            CreateMap<CreateUserModel, User>();
         }
     }
 }
